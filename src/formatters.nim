@@ -33,14 +33,19 @@ proc getUrlPrefix*(cfg: Config): string =
   if cfg.useHttps: https & cfg.hostname
   else: "http://" & cfg.hostname
 
-proc shorten*(text: string; length=28): string =
+
+proc shorten*(text: string; length=60): string =
   result = text
   if result.len > length:
-    result = result[0 ..< length] & "…"
-
-proc shortLink*(text: string; length=28): string =
+    # 尝试在路径分隔符处截断
+    let lastSlash = result.rfind('/', 0, length)
+    if lastSlash > 0:
+      result = result[0 ..< lastSlash] & "…"
+    else:
+      result = result[0 ..< length] & "…"
+proc shortLink*(text: string; length=60): string =
   result = text.replace(wwwRegex, "").shorten(length)
-    
+  
 proc stripHtml*(text: string; shorten=false): string =
   var html = parseHtml(text)
   for el in html.findAll("a"):
@@ -132,7 +137,8 @@ proc getJoinDateFull*(user: User): string =
   user.joinDate.format("h:mm tt - d MMM YYYY")
 
 proc getTime*(tweet: Tweet): string =
-  tweet.time.format("MMM d', 'YYYY' · 'h:mm tt' UTC'")
+    let localTime = utc(tweet.time).local
+    localTime.format("MMM d', 'YYYY' · 'h:mm tt (zzz)")
 
 proc getRfc822Time*(tweet: Tweet): string =
   tweet.time.format("ddd', 'dd MMM yyyy HH:mm:ss 'GMT'")

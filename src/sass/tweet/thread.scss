@@ -14,16 +14,6 @@
   background-color: var(--bg_panel);
 }
 
-.main-tweet,
-.replies {
-  padding-top: 50px;
-  margin-top: -50px;
-}
-
-.main-tweet .tweet-content {
-  font-size: 18px;
-}
-
 @media (max-width: 600px) {
   .main-tweet .tweet-content {
     font-size: 16px;
@@ -35,22 +25,21 @@
   margin-bottom: 10px;
 }
 
+.before-tweet .timeline-item::before {
+  background: #CFD9DE;
+  content: "";
+  position: relative;
+  min-width: 3px;
+  width: 3px;
+  left: 26px;
+  border-radius: 2px;
+  margin-left: -3px;
+  margin-bottom: 37px;
+  top: 56px;
+  z-index: 1;
+  pointer-events: none;
+}
 .thread-line {
-  .timeline-item::before,
-  &.timeline-item::before {
-    background: var(--accent_dark);
-    content: "";
-    position: relative;
-    min-width: 3px;
-    width: 3px;
-    left: 26px;
-    border-radius: 2px;
-    margin-left: -3px;
-    margin-bottom: 37px;
-    top: 56px;
-    z-index: 1;
-    pointer-events: none;
-  }
 
   .with-header:not(:first-child)::after {
     background: var(--accent_dark);

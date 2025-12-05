@@ -59,9 +59,13 @@ nav {
     justify-content: flex-end;
   }
 
-  &.right a:hover {
-    color: var(--accent_light);
-    text-decoration: unset;
+  &.right a {
+    padding-left: 4px;
+    
+    &:hover {
+      color: var(--accent_light);
+      text-decoration: unset;
+    }
   }
 }
 
@@ -77,9 +81,8 @@ nav {
   }
 }
 
-.icon-info {
-  margin: 0 -3px;
-}
+.icon-info:before {
+  margin: 0 -3px; }
 
 .icon-cog {
   font-size: 15px;

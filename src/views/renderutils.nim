@@ -27,8 +27,7 @@ template verifiedIcon*(user: User): untyped {.dirty.} =
   if user.verifiedType != VerifiedType.none:
     let lower = ($user.verifiedType).toLowerAscii()
     buildHtml(tdiv(class=(&"verified-icon {lower}"))):
-      icon "circle", class="verified-icon-circle", title=(&"Verified {lower} account")
-      icon "ok", class="verified-icon-check", title=(&"Verified {lower} account")
+      text ""
   else:
     text ""
 

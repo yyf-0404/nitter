@@ -8,7 +8,6 @@
   overflow: hidden;
   pointer-events: all;
   position: relative;
-  width: 100%;
 
   &:hover {
     border-color: var(--grey);
@@ -21,6 +20,10 @@
   .tweet-name-row {
     padding: 6px 8px;
     margin-top: 1px;
+    .fullname-and-username {
+      flex-direction: row;
+      align-items: baseline;
+    }
   }
 
   .quote-text {
@@ -28,6 +31,8 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     padding: 0px 8px 8px 8px;
+    margin-bottom: 1em;
+    line-height: 1.5em;
   }
 
   .show-thread {
@@ -54,7 +59,6 @@
 }
 
 .quote-media-container {
-  max-height: 300px;
   display: flex;
 
   .card {
@@ -82,14 +86,5 @@
       max-height: 100%;
       max-width: 100%;
     }
-  }
-
-  .gallery-video,
-  .gallery-gif {
-    max-height: 300px;
-  }
-
-  .still-image img {
-    max-height: 250px;
   }
 }
